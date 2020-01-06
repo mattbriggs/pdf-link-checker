@@ -7,7 +7,6 @@
 import csv
 import PyPDF2 as pypdf
 import requests
-from requests.exceptions import InvalidSchema
 
 
 def main():
