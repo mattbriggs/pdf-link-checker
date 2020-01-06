@@ -21,14 +21,14 @@ The script requires the following dependencies:
 
 - Python module: CSV
 
-    Part of the Python core packages. No need to install with PIP.
+    Part of the Python core packages. No need to install with PIP. CSV standars for comma separated value.
 
     For more information, see [CSV File Reading and Writing](https://docs.python.org/3/library/csv.html)
 
 
-## Use `PDFLinkCheck.py`
+## Use `pdf_link_check.py`
 
-Run PDFLinkChecker from your command line:
+Run `pdf_link_check.py` from your command line:
 
 1. Open your command line and run: `python <path to script>/pdf_link_check.py`
 2. The script will ask for the path of the PDF you would like to parse. Enter the absolute path name.<br>On a Windows 10 machine, this might look like: `c:\<pathtoyourpdf>/pdffile.pdf`
@@ -37,7 +37,8 @@ Run PDFLinkChecker from your command line:
     - PDF page number
     - URI checked
     - Response code. You can find more information about response codes at [List of HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+    - Error information for requests that fail.
 
     The script will produce an "NA" rather than a response code for URIs that timeout after five seconds. The script will display the capture and display the error code in the terminal.
 
-5. When the script is done, it saves the result to the pathname an filename that you indicated.
+5. When the script is done, it saves the result to the pathname an filename that you indicated. You can open the CSV in Microsoft Excel.

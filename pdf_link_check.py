@@ -27,7 +27,7 @@ def main():
     pdf = pypdf.PdfFileReader(pdf_file)
     pages = pdf.numPages
 
-    link_report = [["page", "url", "status"]]
+    link_report = [["page", "url", "status", "request-error"]]
 
     for i in range(pages):
         page_obj = pdf.getPage(i)
@@ -41,11 +41,13 @@ def main():
                     try:
                         x = requests.get(raw_url, timeout=5)
                         code = x.status_code
+                        request_error = "NA"
                     except Exception as e:
                         print(e)
                         code = "NA"
+                        request_error = str(e)
                     print("{} : {} : {}".format(i+1, raw_url, code))
-                    record = [i, raw_url, code]
+                    record = [i, raw_url, code, request_error]
                     link_report.append(record)
 
     # Generate CSV output
