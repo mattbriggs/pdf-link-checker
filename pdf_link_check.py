@@ -30,6 +30,7 @@ def main():
 
     for i in range(pages):
         page_obj = pdf.getPage(i)
+        page_no = i + 1
         annots = page_obj["/Annots"]
         for a in annots:
             u = a.getObject()
@@ -45,8 +46,8 @@ def main():
                         print(e)
                         code = "NA"
                         request_error = str(e)
-                    print("{} : {} : {}".format(i+1, raw_url, code))
-                    record = [i, raw_url, code, request_error]
+                    print("{} : {} : {}".format(page_no, raw_url, code))
+                    record = [page_no, raw_url, code, request_error]
                     link_report.append(record)
 
     # Generate CSV output
