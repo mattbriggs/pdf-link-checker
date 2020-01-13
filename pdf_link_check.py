@@ -11,13 +11,13 @@ import requests
 
 def main():
     '''Main logic of the script:
-    Get input PDF and output CSV location.
-    Extract pages from the PDF.
-    For each page, find annotations, and URIs in the annotations.
-    Get the URIs.
-    For each URI try to make a web request and get the response code.
-    Record the page number, URI, and response code result or NA for timeouts.
-    Save the report.
+    - Get input PDF and output CSV location.
+    - Extract pages from the PDF.
+    - For each page, find annotations, and URIs in the annotations.
+        - Get the URIs.
+            - For each URI try to make a web request and get the response code.
+            - Record the page number, URI, and response code result or NA for timeouts.
+    - Save the report.
     '''
 
     print("Starting")
@@ -39,8 +39,9 @@ def main():
                 if  "/URI" in uris:
                     raw_url = uris["/URI"]
                     try:
-                        x = requests.get(raw_url, timeout=5)
+                        x = requests.get(raw_url, timeout=5, stream=True)
                         code = x.status_code
+                        x.close()
                         request_error = "NA"
                     except Exception as e:
                         print(e)
