@@ -2,6 +2,8 @@
 
 `pdf_link_check.py` checks the hyperlinks in an Portable Document Format (PDF) file. The script is a command line app.
 
+Release: V1.0 2020.1.13
+
 ## Install dependencies
 
 The script requires the following dependencies:
