@@ -2,7 +2,8 @@
 
 `pdf_link_check.py` checks the hyperlinks in an Portable Document Format (PDF) file. The script is a command line app.
 
-Release: V1.0.0 2020.1.14
+Release: V1.1.0 2020.1.17
+
 
 ## Install dependencies
 
@@ -35,9 +36,15 @@ The script requires the following dependencies:
 
 - Python module: CSV
 
-    Part of the Python core packages. No need to install with PIP. CSV standars for comma separated value.
+    Part of the Python core packages. No need to install with PIP. CSV stands for comma separated value.
 
     For more information, see [CSV File Reading and Writing](https://docs.python.org/3/library/csv.html)
+
+- Python module: Threading
+
+    Part of the Python core packages. No need to install with PIP.
+
+    For more information, see [threading — Thread-based parallelism](https://docs.python.org/3.6/library/threading.html)
 
 
 ## Use `pdf_link_check.py`
