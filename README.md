@@ -4,6 +4,7 @@
 
 Release: V1.1.0 2020.1.17
 
+
 ## Install dependencies
 
 You can either install the dependencies for this script by using PIP and the requirements file or installing each individual dependent module.

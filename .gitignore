@@ -110,8 +110,5 @@ ENV/
 # pycharm
 .idea*
 
-#mypass
-nobodycomesin.py
-.python_packages
-Better-Butter.zip
-Better-Butter/Better-Butter.zip
+# vscode
+.vscode
