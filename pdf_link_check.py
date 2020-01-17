@@ -7,13 +7,13 @@
 '''
 
 import csv
+import threading
 import PyPDF2 as pypdf
 import requests
-from threading import Thread
-
 
 def get_split(numtosplit):
-    '''Split a number into four equal(ish) sections. Number of pages must be greater than 13.'''
+    '''Split a number into four equal(ish) sections. Number of pages must be greater
+    than 13.'''
     if numtosplit > 13:
         sections = []
         breaksize = int(numtosplit/4)
@@ -26,25 +26,27 @@ def get_split(numtosplit):
         sec4_start = sec3_end +1
         sec4_end = numtosplit
 
-        sections = [(sec1_start, sec1_end), (sec2_start, sec2_end ), (sec3_start, sec3_end), (sec4_start, sec4_end)]
+        sections = [(sec1_start, sec1_end),
+                    (sec2_start, sec2_end),
+                    (sec3_start, sec3_end),
+                    (sec4_start, sec4_end)]
 
-        return(sections)
+        return sections
 
-    else:
-        raise ValueError("Number too small to split into four sections.")
+    raise ValueError("Number too small to split into four sections.")
 
 
-def get_links_from_page(indexstart, indexend, pdfobject):
+def get_links_from_page(indexstart, indexend, reportlist, pdf):
     ''' - Extract pages from the PDF using the incoming range.
         - For each page, find annotations, and URIs in the annotations.
             - Get the URIs.
                 - For each URI try to make a web request and get the response code.
-                - Record the page number, URI, and response code result or NA for timeouts.
+                - Record the page number, URI, and response code result or NA for
+                  timeouts.
     '''
 
-    reportfrag = []
-    for i in range[indexstart:indexend]:
-        page_obj = pdfobject.getPage(i)
+    for i in range(indexstart, indexend):
+        page_obj = pdf.getPage(i)
         page_no = i + 1
         annots = page_obj["/Annots"]
         for a in annots:
@@ -64,14 +66,15 @@ def get_links_from_page(indexstart, indexend, pdfobject):
                         request_error = str(e)
                     print("{} : {} : {}".format(page_no, raw_url, code))
                     record = [page_no, raw_url, code, request_error]
-                    reportfrag.append(record)
-    return reportfrag
+                    reportlist.append(record)
+    return reportlist
 
 def main():
     '''Main logic of the script:
     - Get input PDF and output CSV location.
     - Get the number of pages, and split into four equal sections
-    - Get the range for each section, and send each section range to the parser running its own thread.
+    - Get the range for each section, and send each section range to the parser
+       running its own thread.
     - Save the report.
     '''
 
@@ -80,14 +83,17 @@ def main():
     report_out = input("Save Report (CSV) > ")
     pdf = pypdf.PdfFileReader(pdf_file)
     pages = pdf.numPages
-    link_report = [["page", "url", "status", "request-error"]]
+    link_report = [["page", "uri", "status", "request-error"]]
     if pages < 13:
         link_report.append(get_links_from_page(0, pages, pdf))
     else:
         split = get_split(pages)
+        threads = []
         for i in range(4):
-            th = Thread(get_links_from_page, (split[i][0], split[i][1], pdf))
+            th = threading.Thread(target=get_links_from_page, args=(split[i][0], split[i][1], link_report, pdf))
             th.start()
+            threads.append(th)
+        [th.join() for th in threads]
 
     # Generate CSV output
 
