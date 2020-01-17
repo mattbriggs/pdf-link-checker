@@ -3,7 +3,7 @@
     PDFLinkCheck.py checks the hyperlinks in an Portable Document Format (PDF)
     file.
 
-    Release V1.0 2020.1.13
+    Release V1.1.0 2020.1.17
 '''
 
 import csv

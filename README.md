@@ -2,9 +2,21 @@
 
 `pdf_link_check.py` checks the hyperlinks in an Portable Document Format (PDF) file. The script is a command line app.
 
-Release: V1.0 2020.1.13
+Release: V1.1.0 2020.1.17
 
 ## Install dependencies
+
+You can either install the dependencies for this script by using PIP and the requirements file or installing each individual dependent module.
+
+### To use Pip
+
+1. Navigate your CLI to the folder containing the repository with the `requirements.txt` file.
+2. Run the following command:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Install individual modules
 
 The script requires the following dependencies:
 
@@ -23,9 +35,15 @@ The script requires the following dependencies:
 
 - Python module: CSV
 
-    Part of the Python core packages. No need to install with PIP. CSV standars for comma separated value.
+    Part of the Python core packages. No need to install with PIP. CSV stands for comma separated value.
 
     For more information, see [CSV File Reading and Writing](https://docs.python.org/3/library/csv.html)
+
+- Python module: Threading
+
+    Part of the Python core packages. No need to install with PIP.
+
+    For more information, see [threading — Thread-based parallelism](https://docs.python.org/3.6/library/threading.html)
 
 
 ## Use `pdf_link_check.py`
@@ -39,7 +57,7 @@ Run `pdf_link_check.py` from your command line:
     - PDF page number
     - URI checked
     - Response code. You can find more information about response codes at [List of HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
-    - Error information for requests that fail.
+    - Error information for requests that fail. These are the exceptions raised by the **[Requests module](https://2.python-requests.org/en/master/)**. 
 
     The script will produce an "NA" rather than a response code for URIs that timeout after five seconds. The script will display the capture and display the error code in the terminal.
 
