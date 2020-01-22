@@ -69,6 +69,7 @@ def get_links_from_page(indexstart, indexend, reportlist, pdf):
                     reportlist.append(record)
     return reportlist
 
+
 def main():
     '''Main logic of the script:
     - Get input PDF and output CSV location.
