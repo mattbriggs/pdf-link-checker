@@ -2,7 +2,7 @@
 
 `pdf_link_check.py` checks the hyperlinks in an Portable Document Format (PDF) file. The script is a command line app.
 
-Release: V1.1.0 2020.1.17
+Release: V1.1.1 2020.1.23
 
 
 ## Install dependencies
@@ -40,6 +40,12 @@ The script requires the following dependencies:
 
     For more information, see [CSV File Reading and Writing](https://docs.python.org/3/library/csv.html)
 
+- Python module: operator
+
+    Part of the Python core packages. No need to install with PIP.
+
+    For more information, see [operator](https://docs.python.org/3/library/operator.html#module-operator)
+
 - Python module: Threading
 
     Part of the Python core packages. No need to install with PIP.
@@ -63,3 +69,7 @@ Run `pdf_link_check.py` from your command line:
     The script will produce an "NA" rather than a response code for URIs that timeout after five seconds. The script will display the capture and display the error code in the terminal.
 
 5. When the script is done, it saves the result to the pathname an filename that you indicated. You can open the CSV in Microsoft Excel.
+
+## Run Pytest to validate returns
+
+From the script directory, run `pytest` to validate the code. The tests use the PDFs in the **data** folder.
