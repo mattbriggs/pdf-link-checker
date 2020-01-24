@@ -8,9 +8,10 @@
 
 import csv
 import threading
+import operator
 import PyPDF2 as pypdf
 import requests
-import operator
+
 
 def get_split(numtosplit):
     '''Split a number into four equal(ish) sections. Number of pages must be greater
@@ -81,7 +82,7 @@ def check_pdf_links(infilepath):
         - return a list of lists [[]] with report data.'''
     pdf = pypdf.PdfFileReader(infilepath)
     pages = pdf.numPages
-    link_report = [] # 
+    link_report = []
     if pages < 13:
         get_links_from_page(0, pages, link_report, pdf)
     else:
