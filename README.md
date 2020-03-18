@@ -1,6 +1,6 @@
 # PDF Link Check (Python script)
 
-`pdf_link_check.py` checks the hyperlinks in an Portable Document Format (PDF) file. The script is a command line app.
+`pdf_link_check.py` checks the hyperlinks in a Portable Document Format (PDF) file. The script is a command line app.
 
 Release: V1.1.1 2020.1.23
 
