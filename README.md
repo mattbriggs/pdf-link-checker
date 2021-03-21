@@ -68,7 +68,7 @@ Run `pdf_link_check.py` from your command line:
 
     The script will produce an "NA" rather than a response code for URIs that timeout after five seconds. The script will display the capture and display the error code in the terminal.
 
-5. When the script is done, it saves the result to the pathname an filename that you indicated. You can open the CSV in Microsoft Excel.
+5. When the script is done, it saves the result to the pathname that you indicated. You can open the CSV in Microsoft Excel.
 
 ## Run Pytest to validate returns
 
