@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-link-checker"
+version = "2.0.0"
+description = "Extract and validate all hyperlinks in a PDF file, producing a status report."
+authors = [{ name = "Matt Briggs" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["pdf", "link", "checker", "hyperlink", "validation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "pypdf>=4.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "pytest-mock>=3.11",
+]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.4",
+]
+
+[project.scripts]
+pdf-link-checker = "pdf_link_checker.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mattbriggs/pdf-link-checker"
+Issues = "https://github.com/mattbriggs/pdf-link-checker/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pdf_link_checker*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short -q"
+
+[tool.coverage.run]
+source = ["pdf_link_checker"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 70
+
+[tool.coverage.html]
+directory = "htmlcov"
