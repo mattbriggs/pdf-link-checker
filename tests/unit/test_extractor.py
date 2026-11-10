@@ -80,6 +80,18 @@ class TestPyPDFExtractorRecordStructure:
             assert len(record.uri.strip()) > 0
 
 
+class TestPyPDFExtractorCorruptPDF:
+    """Tests for files that are not parseable as PDF."""
+
+    def test_raises_value_error_for_garbage_pdf(self, tmp_path):
+        """A corrupt PDF raises ValueError, not a pypdf traceback."""
+        bad = tmp_path / "corrupt.pdf"
+        bad.write_bytes(b"this is not a pdf at all\r\n%garbage")
+        extractor = PyPDFExtractor()
+        with pytest.raises(ValueError, match="Cannot parse PDF file"):
+            extractor.extract_links(bad)
+
+
 class TestPyPDFExtractorShortPDF:
     """Tests against the short test PDF (pdflink.pdf, < 13 pages)."""
 
